@@ -1,0 +1,5 @@
+# Modify the webapp entry to remove invalid IOCM_RS service class
+dn: dcmWebAppName=dcm4chee-arc-ui,dicomDeviceName=dcm4chee-arc,cn=Devices,cn=DICOM Configuration,dc=dcm4che,dc=org
+changetype: modify
+delete: dcmWebServiceClass
+dcmWebServiceClass: IOCM_RS

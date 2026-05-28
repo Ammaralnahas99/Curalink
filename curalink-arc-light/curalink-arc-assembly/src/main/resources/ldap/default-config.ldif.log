@@ -1,0 +1,14 @@
+version: 1
+
+#!RESULT ERROR
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:28:11.665
+#!ERROR  [LDAP result code 32 - noSuchObject] NO_SUCH_OBJECT: failed for MessageType : ADD_REQUEST Message ID : 12     Add Request : Entry     dn: dicomDeviceName=stowrsd,cn=Devices,cn=DICOM Configuration,dc=dcm4che,dc=org     objectClass: dicomDevice     objectClass: dcmDevice     dicomInstalled: TRUE     dicomDeviceName: stowrsd     dicomPrimaryDeviceType: ARCHIVE : ERR_268 Cannot find a partition for dicomDeviceName=stowrsd,cn=Devices,cn=DICOM Configuration,dc=dcm4che,dc=org
+dn: dicomDeviceName=stowrsd,cn=Devices,cn=DICOM Configuration,dc=dcm4che,dc=
+ org
+dicomInstalled: TRUE
+dicomDeviceName: stowrsd
+objectClass: dicomDevice
+objectClass: dcmDevice
+dicomPrimaryDeviceType: ARCHIVE
+

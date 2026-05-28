@@ -1,0 +1,9 @@
+﻿{
+  "realm": "curalink",
+  "clientId": "curalink-arc-ui",
+  "url": "http://localhost:8843",
+  "ssl-required": "none",
+  "public-client": true,
+  "bearer-only": true,
+  "confidential-port": 0
+}

@@ -1,0 +1,89 @@
+version: 1
+
+# Create dcm4che partition
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.445
+dn: ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=
+ config
+objectClass: ads-base
+objectClass: ads-partition
+objectClass: ads-jdbmPartition
+ads-partitionId: dcm4che
+ads-partitionSuffix: dc=dcm4che,dc=org
+ads-enabled: TRUE
+
+# Create indexes container
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.457
+dn: ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=
+ default,ou=config
+objectClass: organizationalUnit
+ou: indexes
+
+# Index for objectClass
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.466
+dn: ads-indexAttributeId=objectClass,ou=indexes,ads-partitionId=dcm4che,ou=p
+ artitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: objectClass
+ads-indexHasReverse: FALSE
+
+# Index for dc
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.474
+dn: ads-indexAttributeId=dc,ou=indexes,ads-partitionId=dcm4che,ou=partitions
+ ,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: dc
+ads-indexHasReverse: FALSE
+
+# Index for ou
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.483
+dn: ads-indexAttributeId=ou,ou=indexes,ads-partitionId=dcm4che,ou=partitions
+ ,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: ou
+ads-indexHasReverse: FALSE
+
+# Index for cn
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.494
+dn: ads-indexAttributeId=cn,ou=indexes,ads-partitionId=dcm4che,ou=partitions
+ ,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: cn
+ads-indexHasReverse: FALSE
+
+# Index for uid
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.504
+dn: ads-indexAttributeId=uid,ou=indexes,ads-partitionId=dcm4che,ou=partition
+ s,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: uid
+ads-indexHasReverse: FALSE
+
+# Index for dicomDeviceName
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2026-04-29T11:36:50.514
+dn: ads-indexAttributeId=dicomDeviceName,ou=indexes,ads-partitionId=dcm4che,
+ ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: dicomDeviceName
+ads-indexHasReverse: FALSE

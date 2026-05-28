@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>dcm4chee-arc-ui</title>
+  <!--<base href="/">-->
+    <!--<script>document.write('<base href="' + document.location + '" />');</script>-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=1324">
+    <base id="dynamic-base" href="/dcm4chee-arc/ui2/en/">
+    <script>
+        if (window.location.port === '4200') {
+            document.getElementById('dynamic-base').setAttribute('href', '/');
+        }
+    </script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"></head>
+<body class="mat-typography">
+  <app-root>
+      <div style="position:absolute;left:50%;top:50%;-ms-transform:translate(-50%, -50%);-webkit-transform:translate(-50%, -50%);transform: translate(-50%, -50%);">
+          <style type="text/css">
+          @-webkit-keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          @-webkit-keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          @-moz-keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          @-ms-keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          @-moz-keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          @-webkit-keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          @-o-keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          @keyframes uil-ring-anim {
+              0% {
+                  -ms-transform: rotate(0deg);
+                  -moz-transform: rotate(0deg);
+                  -webkit-transform: rotate(0deg);
+                  -o-transform: rotate(0deg);
+                  transform: rotate(0deg);
+              }
+              100% {
+                  -ms-transform: rotate(360deg);
+                  -moz-transform: rotate(360deg);
+                  -webkit-transform: rotate(360deg);
+                  -o-transform: rotate(360deg);
+                  transform: rotate(360deg);
+              }
+          }
+          .uil-ring-css {
+              background: none;
+              position: relative;
+              width: 200px;
+              height: 200px;
+          }
+          .uil-ring-css > div {
+              position: absolute;
+              display: block;
+              width: 160px;
+              height: 160px;
+              top: 20px;
+              left: 20px;
+              border-radius: 80px;
+              box-shadow: 0 6px 0 0 #2d404f;
+              -ms-animation: uil-ring-anim 1s linear infinite;
+              -moz-animation: uil-ring-anim 1s linear infinite;
+              -webkit-animation: uil-ring-anim 1s linear infinite;
+              -o-animation: uil-ring-anim 1s linear infinite;
+              animation: uil-ring-anim 1s linear infinite;
+          }
+          </style> <div class="uil-ring-css" style="transform:scale(0.6);"><div></div></div>
+  </div>
+  </app-root>
+<link rel="modulepreload" href="chunk-DRLXM5MG.js"><link rel="modulepreload" href="chunk-PIKMBWPH.js"><link rel="modulepreload" href="chunk-XQPDGJ2C.js"><link rel="modulepreload" href="chunk-QLM4TDLB.js"><link rel="modulepreload" href="chunk-UX346222.js"><link rel="modulepreload" href="chunk-2MYLWM7R.js"><link rel="modulepreload" href="chunk-MVPFNKVJ.js"><link rel="modulepreload" href="chunk-RTPWV4IW.js"><link rel="modulepreload" href="chunk-G7GH5NDV.js"><link rel="modulepreload" href="chunk-ECXQZT4K.js"><script src="polyfills.js" type="module"></script><script src="scripts.js" defer></script><script src="main.js" type="module"></script></body>
+</html>

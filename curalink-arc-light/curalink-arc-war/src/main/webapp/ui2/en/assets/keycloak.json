@@ -1,0 +1,9 @@
+{
+  "realm": "curalink",
+  "clientId": "curalink-arc-ui",
+  "auth-server-url": "http://localhost:8843",
+  "ssl-required": "none",
+  "public-client": true,
+  "confidential-port": 0,
+  "enable-pkce": true
+}

@@ -1,0 +1,11 @@
+#!RESULT OK
+#!CONNECTION ldap://localhost:389
+#!DATE 2026-05-04T21:27:45.096
+dn: dcmKeycloakClientID=dcm4chee-arc-ui,dicomDeviceName=dcm4chee-arc,cn=Devi
+ ces,cn=DICOM Configuration,dc=dcm4che,dc=org
+objectClass: dcmKeycloakClient
+dcmKeycloakClientID: dcm4chee-arc-ui
+dcmURI: http://localhost:8843
+dcmKeycloakRealm: dcm4chee
+dcmTLSAllowAnyHostname: TRUE
+dcmTLSDisableTrustManager: TRUE

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard Status Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+
+        button {
+            background: #2c7a7b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #234e52;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 Dashboard Status Check</h1>
+        <p>This page will check if your hospital dashboard system is ready.</p>
+
+        <div id="results">
+            <div class="loading">Checking...</div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button onclick="runChecks()">🔄 Run Checks Again</button>
+            <button onclick="window.location.href='http://localhost:8080/curalink/ui2/en/#/dashboard'">📊 Go to
+                Dashboard</button>
+            <button onclick="window.open('test-ae-dashboard.html', '_blank')">🧪 Open Test Dashboard</button>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:8080/curalink';
+
+        async function checkEndpoint(url, name) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return {
+                    name,
+                    status: 'success',
+                    message: `✓ ${name} is working`,
+                    data: data
+                };
+            } catch (error) {
+                return {
+                    name,
+                    status: 'error',
+                    message: `✗ ${name} failed: ${error.message}`,
+                    error: error
+                };
+            }
+        }
+
+        async function runChecks() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="loading">Running checks...</div>';
+
+            const checks = [];
+
+            // Check 1: Can we get AE titles?
+            checks.push(await checkEndpoint(`${BASE_URL}/rs/aes`, 'AE Titles Endpoint'));
+
+            // Check 2: Can we get hospital statistics for a test AE?
+            const aeCheck = checks[0];
+            if (aeCheck.status === 'success' && aeCheck.data && aeCheck.data.length > 0) {
+                const firstAE = aeCheck.data[0].dicomAETitle;
+                checks.push(await checkEndpoint(
+                    `${BASE_URL}/aets/${firstAE}/rs/hospitals/statistics`,
+                    `Hospital Statistics for ${firstAE}`
+                ));
+
+                // Check 3: Can we initialize dashboard?
+                checks.push(await checkEndpoint(
+                    `${BASE_URL}/aets/${firstAE}/rs/hospitals/dashboard/initialize`,
+                    `Dashboard Initialize Endpoint for ${firstAE}`
+                ));
+            }
+
+            // Display results
+            let html = '<h2>Check Results:</h2>';
+
+            checks.forEach(check => {
+                const statusClass = check.status === 'success' ? 'success' : 'error';
+                html += `
+                    <div class="status ${statusClass}">
+                        <strong>${check.message}</strong>
+                        ${check.data ? `<pre>${JSON.stringify(check.data, null, 2).substring(0, 500)}${JSON.stringify(check.data, null, 2).length > 500 ? '...' : ''}</pre>` : ''}
+                    </div>
+                `;
+            });
+
+            // Summary
+            const successCount = checks.filter(c => c.status === 'success').length;
+            const totalCount = checks.length;
+
+            if (successCount === totalCount) {
+                html += `
+                    <div class="status success">
+                        <h3>✓ All Systems Ready!</h3>
+                        <p>Your hospital dashboard system is fully functional.</p>
+                        <p><strong>Next steps:</strong></p>
+                        <ol>
+                            <li>Click "Go to Dashboard" button above</li>
+                            <li>You should see all your AE titles with their hospitals</li>
+                            <li>If you don't see the new AE titles, try refreshing the page</li>
+                        </ol>
+                    </div>
+                `;
+            } else if (successCount > 0) {
+                html += `
+                    <div class="status warning">
+                        <h3>⚠ Partial Functionality</h3>
+                        <p>${successCount} out of ${totalCount} checks passed.</p>
+                        <p><strong>What this means:</strong></p>
+                        <ul>
+                            <li>Basic functionality is working</li>
+                            <li>Some features may not be available</li>
+                            <li>You may need to rebuild the backend</li>
+                        </ul>
+                        <p><strong>To fix:</strong></p>
+                        <pre>cd dcm4chee-arc-light
+mvn clean install -DskipTests
+# Then redeploy the application</pre>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="status error">
+                        <h3>✗ System Not Ready</h3>
+                        <p>The dashboard system needs to be built and deployed.</p>
+                        <p><strong>Required steps:</strong></p>
+                        <ol>
+                            <li><strong>Build Frontend:</strong>
+                                <pre>cd dcm4chee-arc-light/curalink-arc-ui2
+npm run build</pre>
+                            </li>
+                            <li><strong>Build Backend:</strong>
+                                <pre>cd dcm4chee-arc-light
+mvn clean install -DskipTests</pre>
+                            </li>
+                            <li><strong>Deploy:</strong> Copy the built files to WildFly</li>
+                            <li><strong>Restart:</strong> Restart WildFly server</li>
+                        </ol>
+                    </div>
+                `;
+            }
+
+            // Show AE titles found
+            if (aeCheck.status === 'success' && aeCheck.data) {
+                html += `
+                    <div class="status info">
+                        <h3>📋 AE Titles Found (${aeCheck.data.length}):</h3>
+                        <ul>
+                            ${aeCheck.data.map(ae => `<li><strong>${ae.dicomAETitle}</strong>${ae.dicomDescription ? ` - ${ae.dicomDescription}` : ''}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            resultsDiv.innerHTML = html;
+        }
+
+        // Run checks on page load
+        runChecks();
+    </script>
+</body>
+
+</html>

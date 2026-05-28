@@ -1,0 +1,57 @@
+version: 1
+
+# Create dcm4che partition
+dn: ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-partition
+objectClass: ads-jdbmPartition
+ads-partitionId: dcm4che
+ads-partitionSuffix: dc=dcm4che,dc=org
+ads-enabled: TRUE
+
+# Create indexes container
+dn: ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: organizationalUnit
+ou: indexes
+
+# Index for objectClass
+dn: ads-indexAttributeId=objectClass,ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: objectClass
+ads-indexHasReverse: FALSE
+
+# Index for dc
+dn: ads-indexAttributeId=dc,ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: dc
+ads-indexHasReverse: FALSE
+
+# Index for ou
+dn: ads-indexAttributeId=ou,ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: ou
+ads-indexHasReverse: FALSE
+
+# Index for cn
+dn: ads-indexAttributeId=cn,ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: cn
+ads-indexHasReverse: FALSE
+
+# Index for uid
+dn: ads-indexAttributeId=uid,ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: uid
+ads-indexHasReverse: FALSE
+
+# Index for dicomDeviceName
+dn: ads-indexAttributeId=dicomDeviceName,ou=indexes,ads-partitionId=dcm4che,ou=partitions,ads-directoryServiceId=default,ou=config
+objectClass: ads-base
+objectClass: ads-jdbmIndex
+ads-indexAttributeId: dicomDeviceName
+ads-indexHasReverse: FALSE

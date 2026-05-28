@@ -1,0 +1,16 @@
+# Add missing Keycloak webapp entry to fix 409 Conflict errors
+# This entry is required for the /dcm4chee-arc/webapps/ endpoint to work properly
+
+dn: dcmWebAppName=dcm4chee-arc-ui,dicomDeviceName=dcm4chee-arc,cn=Devices,cn=DICOM Configuration,dc=dcm4che,dc=org
+objectClass: dcmWebApp
+dcmWebAppName: dcm4chee-arc-ui
+dcmWebServicePath: /dcm4chee-arc/ui2
+dcmKeycloakClientID: dcm4chee-arc-ui
+dcmWebServiceClass: QIDO_RS
+dcmWebServiceClass: WADO_RS
+dcmWebServiceClass: STOW_RS
+dcmWebServiceClass: UPS_RS
+dcmWebServiceClass: MWL_RS
+dcmWebServiceClass: MPPS_RS
+dcmWebServiceClass: DCM4CHEE_ARC
+dcmWebServiceClass: DCM4CHEE_ARC_AET

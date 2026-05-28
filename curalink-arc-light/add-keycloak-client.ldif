@@ -1,0 +1,7 @@
+dn: dcmKeycloakClientID=dcm4chee-arc-ui,dicomDeviceName=dcm4chee-arc,cn=Devices,cn=DICOM Configuration,dc=dcm4che,dc=org
+objectClass: dcmKeycloakClient
+dcmKeycloakClientID: dcm4chee-arc-ui
+dcmURI: http://localhost:8843
+dcmKeycloakRealm: dcm4chee
+dcmTLSAllowAnyHostname: TRUE
+dcmTLSDisableTrustManager: TRUE
